@@ -2,8 +2,8 @@
 CREATE TABLE IF NOT EXISTS public.zone
 (
     zone_id uuid NOT NULL DEFAULT gen_random_uuid(),
-    name VARCHAR(64) NOT NULL UNIQUE,         -- Идентификатор зоны (A/B/C...)
-    description TEXT,                         -- Описание зоны
+    name VARCHAR(64) NOT NULL UNIQUE,
+    description TEXT,
     created_at TIMESTAMP NOT NULL DEFAULT now(),
     updated_at TIMESTAMP,
     CONSTRAINT zone_pkey PRIMARY KEY (zone_id)
@@ -13,8 +13,8 @@ CREATE TABLE IF NOT EXISTS public.zone
 CREATE TABLE IF NOT EXISTS public.openvpn
 (
     openvpn_id uuid NOT NULL DEFAULT gen_random_uuid(),
-    vpn_enabled BOOLEAN DEFAULT FALSE,        -- Активен ли VPN
-    vpn_config JSONB,                         -- {server: "vpn.example.com", port: 1194, ...}
+    vpn_enabled BOOLEAN DEFAULT FALSE,
+    vpn_config JSONB,
     created_at TIMESTAMP NOT NULL DEFAULT now(),
     updated_at TIMESTAMP,
     CONSTRAINT configuration_pkey PRIMARY KEY (openvpn_id)
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS public.permission
     permission_id uuid NOT NULL DEFAULT gen_random_uuid(),
     user_id uuid NOT NULL,
     target_type VARCHAR(8) NOT NULL CHECK (target_type IN ('DEVICE', 'ZONE')),
-    target_id uuid NOT NULL,                  -- device_id ИЛИ zone_id
+    target_id uuid NOT NULL,
     assigned_by uuid,
     valid_from TIMESTAMP DEFAULT now(),
     valid_to TIMESTAMP,

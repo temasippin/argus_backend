@@ -49,5 +49,4 @@ async def get_vpn_status_route(  # Переименовано, чтобы изб
     vpn_service: OpenVPNServiceDependency,
     current_user: User = Depends(get_current_user)
 ):
-    # Проверка прав доступа уже внутри сервисного метода get_vpn_status
     return await vpn_service.get_vpn_status(current_user)
